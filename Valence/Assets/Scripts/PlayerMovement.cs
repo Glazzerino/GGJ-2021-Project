@@ -12,16 +12,16 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 30f;
     public CharacterController2D controller;
     bool jump = false;
-    GameObject grappable = null;
+    GrappableEntity grappable = null;
     float horizontalInput = 0f;
     public float rotSpeedFactor = 0.3f;
-    bool isGrappled = false;
+    public bool isGrappled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log("Player script start");
+        //Debug.Log("Player script start");
     }
 
     // Update is called once per frame
@@ -45,17 +45,24 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", true);
         }
         if (animator.GetBool("Jump")) {
-            Debug.Log("Jumped!");
+            //Debug.Log("Jumped!");
         }
         // BEHAVIOR
         grappable = GetClosestGrappable();
 
+
+        
         if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
             rb.velocity = new Vector2(0f, 0f);
             rb.gravityScale = 0;
-            transform.RotateAround(grappable.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
-        } 
 
+            transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
+
+        }
+        // keydown event. keeps reads and writes low
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            grappable.SetGrappled(true);
+        }
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             //this.gameObject.transform.Rotate(0,0,0);
             this.gameObject.transform.rotation = Quaternion.identity;
@@ -68,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             rb.gravityScale = 2.5f;
             isGrappled = false;
+            grappable.SetGrappled(false);
         }
 
         
@@ -85,15 +93,15 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    GameObject GetClosestGrappable() {
+    GrappableEntity GetClosestGrappable() {
         Vector3 pos = this.gameObject.transform.position;
         float dist = float.PositiveInfinity;
-        GameObject target = null;
+        GrappableEntity target = null;
 
         foreach (GrappableEntity go in GrappableEntity.Entities) {
             if ((go.gameObject.transform.position - pos).sqrMagnitude < dist) { 
                 dist = (go.gameObject.transform.position - pos).sqrMagnitude;
-                target = go.gameObject;
+                target = go;
             }
         }
         return target;
@@ -122,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
    public void OnLanding() {
         animator.SetBool("Jump", false);
-        Debug.Log("Landed");
+        //Debug.Log("Landed");
     }
 }
 

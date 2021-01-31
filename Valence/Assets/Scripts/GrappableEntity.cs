@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GrappableEntity : MonoBehaviour
 {
+    bool isGrappled = false;
     // Start is called before the first frame update
     public static readonly HashSet<GrappableEntity> Entities = new HashSet<GrappableEntity>();
-    void Start()
-    {
+    void Start() {
         Entities.Add(this);
     }
 
-    private void OnDestroy()
-    {
+    public void SetGrappled(bool set) {
+        isGrappled = set;
+    }
+    public bool GetGrappled() {
+        return isGrappled;
+    }
+    private void OnDestroy() {
         Entities.Remove(this);
     }
 }

@@ -2615,6 +2615,7 @@ MonoBehaviour:
   speed: 50
   controller: {fileID: 734062611}
   rotSpeedFactor: 0.3
+  isGrappled: 0
 --- !u!114 &734062611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,6 +2919,7 @@ GameObject:
   - component: {fileID: 1411435263}
   - component: {fileID: 1411435262}
   - component: {fileID: 1411435261}
+  - component: {fileID: 1411435265}
   m_Layer: 0
   m_Name: w
   m_TagString: Untagged
@@ -3043,7 +3045,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.051886797, b: 0.051886797, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 0}
   m_Sprites: []
@@ -3058,12 +3060,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411435260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.02, y: 2.09, z: 0}
+  m_LocalPosition: {x: -5.33, y: 1.61, z: 0}
   m_LocalScale: {x: 0.4074524, y: 0.37058276, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411435265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411435260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8316d48ab182ba479fbd9dbe34b73ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappableEntity: {fileID: 1411435261}
 --- !u!1 &2045426443
 GameObject:
   m_ObjectHideFlags: 0
