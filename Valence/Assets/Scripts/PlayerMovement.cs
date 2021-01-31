@@ -8,12 +8,16 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     public Animator animator;
 
-
+    const int RADIUS = 3;
     public float speed = 30f;
     public CharacterController2D controller;
     bool jump = false;
     GameObject grappable = null;
     float horizontalInput = 0f;
+    float timeCounter = 0;
+
+    bool isGrappled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,22 +45,33 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             rb.velocity = new Vector2(0f, 0f);
-            rb.gravityScale = 0;
-        }
-         else if (Input.GetKeyUp(KeyCode.LeftShift)) {
-            rb.gravityScale = 2.5f;
+            //rb.gravityScale = 0;
         }
         
-        if (grappable != null) {
-            //Debug.Log(grappable.transform.position);
-            Grapple(grappable);
+        if (grappable != null && Input.GetKeyDown(KeyCode.LeftShift)) {
+
+            isGrappled = true;
         }
+        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            rb.gravityScale = 2.5f;
+            isGrappled = false;
+        }
+
+        
     }
 
     void FixedUpdate() {
         controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
 
         jump = false;
+        if (isGrappled) {
+            //NearCircularEdge(grappable);
+        }
+        //timeCounter += Time.deltaTime;
+        //float x = Mathf.Cos (timeCounter);
+        //float y = Mathf.Sin (timeCounter);
+        //float z = 0;
+        //transform.position = new Vector3 (x, y, z);
     }
 
     GameObject GetClosestGrappable() {
@@ -75,14 +90,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Grapple(GameObject target) {
         float y_delta = target.transform.position.y - this.transform.position.y;
-        Vector2 hypothenuse = (target.transform.position - this.transform.position);
+        Vector2 distance = (target.transform.position - this.transform.position);
 
-        //while(hypothenuse != 3f) {
-
-        //}
         float angle = Vector2.Angle(target.transform.position, this.transform.position);
+        
+    }
 
-        Debug.Log(angle);
+    void NearCircularEdge(GameObject target) {
+        float angle = Vector2.Angle(this.transform.position, target.transform.position);
+        float distance = (target.transform.position - this.gameObject.transform.position).sqrMagnitude - RADIUS;
+        float x_component = distance * Mathf.Sin(angle);
+        float y_component = distance * Mathf.Cos(angle);
+        float x = this.gameObject.transform.position.x;
+        float y = this.gameObject.transform.position.y;
+
+
+        this.transform.position = Vector2.MoveTowards(this.transform.position, target.transform.position, 10f * Time.fixedDeltaTime);
+        
     }
 
    public void OnLanding() {
