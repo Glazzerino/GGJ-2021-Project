@@ -14,8 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     GameObject grappable = null;
     float horizontalInput = 0f;
-    float timeCounter = 0;
-
+    public float rotSpeedFactor = 0.3f;
     bool isGrappled = false;
 
     // Start is called before the first frame update
@@ -30,10 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         //ANIMATION CONTROL
-        if (controller.isGrounded()) {
-            animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-        }
 
+        if (!controller.isGrounded()) {
+            animator.SetBool("Jump", true);
+        } else {
+            animator.SetBool("Jump",false);
+        }
+       
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         horizontalInput = Input.GetAxisRaw("Horizontal") *speed;
 
@@ -41,14 +44,16 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("Jump", true);
         }
-
+        if (animator.GetBool("Jump")) {
+            Debug.Log("Jumped!");
+        }
         // BEHAVIOR
         grappable = GetClosestGrappable();
 
         if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
             rb.velocity = new Vector2(0f, 0f);
             rb.gravityScale = 0;
-            transform.RotateAround(grappable.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * 0.3f);
+            transform.RotateAround(grappable.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
         } 
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
@@ -69,9 +74,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
+        if (!isGrappled) {
+            controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
 
-        jump = false;
+        }
+            jump = false;
         if (isGrappled) {
             //NearCircularEdge(grappable);
         }
@@ -115,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
    public void OnLanding() {
         animator.SetBool("Jump", false);
+        Debug.Log("Landed");
     }
 }
 
