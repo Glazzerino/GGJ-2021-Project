@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
                     if (Vector2.Distance(transform.position, grappable.transform.position) < RADIUS) {
                            beamRenderer.enabled = true;
                            grappable.SetGrappled(true);
-                
+                           
                            isGrappled = true; 
                     }
                 }
