@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrappableEntity : MonoBehaviour
 {
-    public bool isGrappled = false;
+    public bool grappled = false;
     // Start is called before the first frame update
     public static readonly HashSet<GrappableEntity> Entities = new HashSet<GrappableEntity>();
     void Start() {

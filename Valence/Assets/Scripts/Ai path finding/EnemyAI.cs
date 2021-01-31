@@ -66,7 +66,7 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (grappableEntity.isGrappled)
+        if (grappableEntity.grappled)
         {
             spriteRenderer.sprite = grappledSprite;
             rb.velocity = Vector3.zero;
