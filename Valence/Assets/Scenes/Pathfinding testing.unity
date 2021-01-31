@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 95397844}
   - component: {fileID: 95397843}
   - component: {fileID: 95397842}
+  - component: {fileID: 95397846}
   m_Layer: 10
   m_Name: Enemies
   m_TagString: Untagged
@@ -215,7 +216,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25683355
 --- !u!50 &95397845
 Rigidbody2D:
   serializedVersion: 4
@@ -237,6 +238,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &95397846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95397840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea57ad838d5d7e2439f4ce50634303d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &106915469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,8 +1589,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 338b3f5fb16a67e49b310b09995bc52c, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9e0280e542b856445bd76919e896cee8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
