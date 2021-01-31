@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 95397842}
   - component: {fileID: 95397846}
   m_Layer: 10
-  m_Name: Enemies
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   target: {fileID: 1305104243}
   speed: 200
   nextWaypointDistance: 7
-  offset: 0
+  offset: 90
   enemyArea: {fileID: 557487671}
   deathDetection: {fileID: 106915478}
   grappledSprite: {fileID: 21300000, guid: 3545e5f58d0547e439ca159508a35d99, type: 3}
@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 106915477}
+  RADIUS: 3
   speed: 30
   beamRenderer: {fileID: 0}
   controller: {fileID: 106915474}
@@ -1546,6 +1547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1305104241}
+  RADIUS: 3
   speed: 30
   beamRenderer: {fileID: 279382488}
   controller: {fileID: 1305104237}
@@ -2109,7 +2111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9e0280e542b856445bd76919e896cee8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

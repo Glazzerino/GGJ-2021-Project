@@ -56,10 +56,6 @@ public class Player : MonoBehaviour
                 jump = true;
                 animator.SetBool("Jump", true);
             }
-            if (animator.GetBool("Jump"))
-            {
-                //Debug.Log("Jumped!");
-            }
             // BEHAVIOR
 
             // keydown event. keeps reads and writes low
@@ -72,20 +68,20 @@ public class Player : MonoBehaviour
                     if (Vector2.Distance(transform.position, grappable.transform.position) < RADIUS) {
                            beamRenderer.enabled = true;
                            grappable.SetGrappled(true);
-                
+                           
                            isGrappled = true; 
                     }
                 }
                 
             }
 
-            if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
+            if (Input.GetKey(KeyCode.LeftShift) && grappable != null && isGrappled) {
                 rb.velocity = new Vector2(0f, 0f);
                 rb.gravityScale = 0;
-
+                
                 beamRenderer.SetPosition(0, beampoint.position);
                 beamRenderer.SetPosition(1, grappable.gameObject.transform.position);  
-
+                  
                 transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
 
             }
@@ -98,7 +94,7 @@ public class Player : MonoBehaviour
                 rb.gravityScale = 2.5f;
                 isGrappled = false;
                 this.gameObject.transform.rotation = Quaternion.identity;
-
+                
                 grappable.SetGrappled(false);
             }
     }
@@ -106,7 +102,6 @@ public class Player : MonoBehaviour
     void FixedUpdate() {
         if (!isGrappled) {
             controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
-
         }
         
             jump = false;
