@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
                 beamRenderer.SetPosition(0, beampoint.position);
                 beamRenderer.SetPosition(1, grappable.gameObject.transform.position);  
                   
-                transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
+                
 
             }
            
@@ -102,6 +102,8 @@ public class Player : MonoBehaviour
     void FixedUpdate() {
         if (!isGrappled) {
             controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
+        } else {
+            transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
         }
         
             jump = false;
