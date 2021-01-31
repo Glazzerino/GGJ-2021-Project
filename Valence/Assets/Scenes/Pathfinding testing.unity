@@ -202,6 +202,7 @@ MonoBehaviour:
   target: {fileID: 1305104243}
   speed: 200
   nextWaypointDistance: 7
+  offset: 0
   enemyArea: {fileID: 557487671}
   deathDetection: {fileID: 106915478}
   grappledSprite: {fileID: 21300000, guid: 3545e5f58d0547e439ca159508a35d99, type: 3}
@@ -902,7 +903,7 @@ GameObject:
   - component: {fileID: 557487673}
   - component: {fileID: 557487672}
   - component: {fileID: 557487671}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,7 +1571,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 1591
+    m_Bits: 513
   m_GroundCheck: {fileID: 1618815279}
   m_CeilingCheck: {fileID: 105504766}
   m_CrouchDisableCollider: {fileID: 0}
