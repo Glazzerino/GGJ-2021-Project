@@ -3269,7 +3269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 734062615}
-  RADIUS: 50
+  RADIUS: 5
   speed: 60
   beamRenderer: {fileID: 853948422}
   controller: {fileID: 734062611}
