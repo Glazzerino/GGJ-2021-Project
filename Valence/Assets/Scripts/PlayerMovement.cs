@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    public Animator animator;
+
 
     public float speed = 30f;
     public CharacterController2D controller;
@@ -21,22 +23,31 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        grappable = GetClosestGrappable();
+
+
+        //ANIMATION CONTROL
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+
+
         horizontalInput = Input.GetAxisRaw("Horizontal") *speed;
+
         if (Input.GetButtonDown("Jump")) {
             jump = true;
+            animator.SetBool("Jump", true);
         }
+
+        // BEHAVIOR
+        grappable = GetClosestGrappable();
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             rb.velocity = new Vector2(0f, 0f);
             rb.gravityScale = 0;
         }
          else if (Input.GetKeyUp(KeyCode.LeftShift)) {
-            rb.gravityScale = 2;
+            rb.gravityScale = 2.5f;
         }
         
-        if (grappable != null)
-        {
+        if (grappable != null) {
             //Debug.Log(grappable.transform.position);
             Grapple(grappable);
         }
@@ -44,8 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate() {
         controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
+
         jump = false;
-        Debug.Log("Jump!");
     }
 
     GameObject GetClosestGrappable() {
@@ -72,6 +83,10 @@ public class PlayerMovement : MonoBehaviour
         float angle = Vector2.Angle(target.transform.position, this.transform.position);
 
         Debug.Log(angle);
+    }
+
+   public void OnLanding() {
+        animator.SetBool("Jump", false);
     }
 }
 

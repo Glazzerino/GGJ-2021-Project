@@ -28,7 +28,9 @@ public class CharacterController2D : MonoBehaviour {
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
-
+	public bool isGrounded(){
+		return m_Grounded;
+	}
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
