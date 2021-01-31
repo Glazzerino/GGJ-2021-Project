@@ -2530,6 +2530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57ad838d5d7e2439f4ce50634303d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grappled: 0
 --- !u!114 &410491526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,6 +2674,8 @@ GameObject:
   - component: {fileID: 734062612}
   - component: {fileID: 734062611}
   - component: {fileID: 734062610}
+  - component: {fileID: 734062619}
+  - component: {fileID: 734062618}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2692,13 +2695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5712305508b3dd468776b55ffcfa99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 734062615}
-  speed: 50
-  beamRenderer: {fileID: 853948422}
-  controller: {fileID: 734062611}
-  beampoint: {fileID: 1053395327}
-  rotSpeedFactor: 0.5
-  isGrappled: 0
 --- !u!114 &734062611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2724,8 +2720,8 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 734062610}
-        m_MethodName: OnLanding
+      - m_Target: {fileID: 11500000, guid: e44de3edc1c5f024386207e0b3c086c2, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2888,6 +2884,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734062618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734062609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967abe426e5b1cb459237bdf94346a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+--- !u!114 &734062619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734062609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44de3edc1c5f024386207e0b3c086c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 734062615}
+  speed: 60
+  beamRenderer: {fileID: 853948422}
+  controller: {fileID: 734062611}
+  beampoint: {fileID: 1053395327}
+  rotSpeedFactor: 0.5
+  isGrappled: 0
+  deathDetection: {fileID: 734062618}
 --- !u!1 &750209686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,7 +2985,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853948420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3603,6 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57ad838d5d7e2439f4ce50634303d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grappled: 0
 --- !u!95 &2140774954
 Animator:
   serializedVersion: 3
