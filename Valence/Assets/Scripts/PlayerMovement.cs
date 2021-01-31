@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
         controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
         jump = false;
+        Debug.Log("Jump!");
     }
 
     GameObject GetClosestGrappable() {
