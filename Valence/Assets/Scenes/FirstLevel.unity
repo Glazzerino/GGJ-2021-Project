@@ -3424,7 +3424,7 @@ GameObject:
   - component: {fileID: 734062618}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3656,10 +3656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 734062615}
-<<<<<<< HEAD
-  RADIUS: 5
-=======
->>>>>>> fdc39bff487ce094d70fec5e782fe06b593a2b44
+  RADIUS: 3
   speed: 60
   beamRenderer: {fileID: 853948422}
   controller: {fileID: 734062611}
