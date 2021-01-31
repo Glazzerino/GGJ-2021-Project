@@ -11,6 +11,12 @@ public class EnemyAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
     private Vector3 defaultPosition;
 
+    private Vector3 targetPos;
+    private Vector3 thisPos;
+    public float offset;
+    private float angle;
+
+
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
@@ -44,12 +50,13 @@ public class EnemyAI : MonoBehaviour
         {
             if (seeker.IsDone())
                 seeker.StartPath(rb.position, defaultPosition, OnPathComplete);
-        } else
+        }
+        else
         {
             if (seeker.IsDone())
                 seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
-        
+
     }
 
     void OnPathComplete(Path p)
@@ -68,12 +75,27 @@ public class EnemyAI : MonoBehaviour
 
         if (grappableEntity.grappled)
         {
+            
             spriteRenderer.sprite = grappledSprite;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = 0;
         } else
         {
-            spriteRenderer.sprite = scoutingSprite;
+
+            if (!enemyArea.playerInside || deathDetection.isDead == true)
+            {
+                spriteRenderer.sprite = scoutingSprite;
+            } else
+            {
+                spriteRenderer.sprite = seekingSprite;
+                targetPos = target.position;
+                thisPos = transform.position;
+                targetPos.x = targetPos.x - thisPos.x;
+                targetPos.y = targetPos.y - thisPos.y;
+                angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
+            }
+
             if (path == null)
                 return;
             if (currentWaypoint >= path.vectorPath.Count)
