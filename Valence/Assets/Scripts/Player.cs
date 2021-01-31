@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public Animator animator;
 
-    public int RADIUS = 3;
+    public int RADIUS = 5;
 
     public float speed = 30f;
     public LineRenderer beamRenderer;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     GrappableEntity grappable = null;
 
     float horizontalInput = 0f;
-    public float rotSpeedFactor = 0.3f;
+    public float rotSpeedFactor = 2f;
     public bool isGrappled = false;
     public DeathDetection deathDetection;
 
