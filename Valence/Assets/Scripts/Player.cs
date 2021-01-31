@@ -35,8 +35,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-        if (deathDetection.isDead == false)
-        {
+        
             //ANIMATION CONTROL
 
             if (!controller.isGrounded())
@@ -67,78 +66,37 @@ public class Player : MonoBehaviour
 
 
 
-            if (Input.GetKey(KeyCode.LeftShift) && grappable != null)
-            {
+            if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
                 rb.velocity = new Vector2(0f, 0f);
                 rb.gravityScale = 0;
+
+                beamRenderer.SetPosition(0, beampoint.position);
+                beamRenderer.SetPosition(1, grappable.gameObject.transform.position);  
 
                 transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
 
             }
             // keydown event. keeps reads and writes low
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                grappable.SetGrappled(true);
-            }
+            
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 //this.gameObject.transform.Rotate(0,0,0);
                 this.gameObject.transform.rotation = Quaternion.identity;
             }
 
-            if (grappable != null && Input.GetKeyDown(KeyCode.LeftShift))
-            {
-
-                isGrappled = true;
-            }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                rb.gravityScale = 2.5f;
-                isGrappled = false;
-                grappable.SetGrappled(false);
-            }
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 90);
-
-
-            if (Input.GetKey(KeyCode.LeftShift) && grappable != null)
-            {
-
-                rb.velocity = new Vector2(0f, 0f);
-                rb.gravityScale = 0;
-                transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
-                DrawBeam(grappable.gameObject);
-            }
-            // keydown event. keeps reads and writes low
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
+            if (grappable != null && Input.GetKeyDown(KeyCode.LeftShift)) {
+                beamRenderer.enabled = true;
                 grappable.SetGrappled(true);
-            }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                //this.gameObject.transform.Rotate(0,0,0);
-                this.gameObject.transform.rotation = Quaternion.identity;
-            }
-
-            if (grappable != null && Input.GetKeyDown(KeyCode.LeftShift))
-            {
-
+                
                 isGrappled = true;
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                rb.gravityScale = 2.5f;
-                isGrappled = false;
-                grappable.SetGrappled(false);
                 beamRenderer.enabled = false;
-
+                rb.gravityScale = 2.5f;
+                isGrappled = false;
+                grappable.SetGrappled(false);
             }
-
-        }
-
-        
     }
 
     void FixedUpdate() {
@@ -146,6 +104,7 @@ public class Player : MonoBehaviour
             controller.Move((horizontalInput * Time.fixedDeltaTime), false, jump);
 
         }
+        
             jump = false;
         if (isGrappled) {
             //NearCircularEdge(grappable);
@@ -168,6 +127,7 @@ public class Player : MonoBehaviour
     }
 
     void DrawBeam(GameObject target) {
+        Debug.Log("Beam");
         beamRenderer.enabled = true;
         beamRenderer.SetPosition(0, beampoint.position);
         beamRenderer.SetPosition(1, target.transform.position);
