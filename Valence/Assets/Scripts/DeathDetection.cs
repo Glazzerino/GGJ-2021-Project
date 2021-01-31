@@ -9,6 +9,6 @@ public class DeathDetection : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
-            isDead = true;
+            Application.LoadLevel(Application.loadedLevel);
     }
 }
