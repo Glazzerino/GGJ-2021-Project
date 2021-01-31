@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 95397846}
   m_Layer: 10
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,8 +171,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 106915476}
   speed: 200
-  nextWaypointDistance: 3
+  nextWaypointDistance: 7
   enemyArea: {fileID: 557487671}
+  deathDetection: {fileID: 106915478}
+  grappledSprite: {fileID: 21300000, guid: 3545e5f58d0547e439ca159508a35d99, type: 3}
+  scoutingSprite: {fileID: 21300000, guid: 9e0280e542b856445bd76919e896cee8, type: 3}
+  seekingSprite: {fileID: 21300000, guid: 0212e984e1a033147982604001088768, type: 3}
 --- !u!114 &95397843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57ad838d5d7e2439f4ce50634303d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrappled: 0
 --- !u!1 &106915469
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +271,7 @@ GameObject:
   - component: {fileID: 106915471}
   - component: {fileID: 106915470}
   - component: {fileID: 106915477}
+  - component: {fileID: 106915478}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -351,6 +357,9 @@ MonoBehaviour:
   animator: {fileID: 106915477}
   speed: 160
   controller: {fileID: 106915474}
+  rotSpeedFactor: 0.3
+  isGrappled: 0
+  deathDetection: {fileID: 106915478}
 --- !u!114 &106915474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +484,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &106915478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106915469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967abe426e5b1cb459237bdf94346a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
 --- !u!1 &514553902
 GameObject:
   m_ObjectHideFlags: 0

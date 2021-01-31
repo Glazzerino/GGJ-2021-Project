@@ -16,15 +16,23 @@ public class EnemyAI : MonoBehaviour
     bool reachedEndOfPath = false;
 
     public PlayerDetection enemyArea;
+    public DeathDetection deathDetection;
+    GrappableEntity grappableEntity;
+
+    public Sprite grappledSprite;
+    public Sprite scoutingSprite;
+    public Sprite seekingSprite;
 
     Seeker seeker;
     Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
+        grappableEntity = GetComponent<GrappableEntity>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         defaultPosition = transform.position;
 
@@ -32,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {       
-        if (!enemyArea.playerInside)
+        if (!enemyArea.playerInside || deathDetection.isDead == true)
         {
             if (seeker.IsDone())
                 seeker.StartPath(rb.position, defaultPosition, OnPathComplete);
@@ -57,7 +65,15 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
+        if (grappableEntity.isGrappled)
+        {
+            spriteRenderer.sprite = grappledSprite;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+        } else
+        {
+            spriteRenderer.sprite = scoutingSprite;
             if (path == null)
                 return;
             if (currentWaypoint >= path.vectorPath.Count)
@@ -81,7 +97,7 @@ public class EnemyAI : MonoBehaviour
             {
                 currentWaypoint++;
             }
-        
-        
+        }
+    
     }
 }
