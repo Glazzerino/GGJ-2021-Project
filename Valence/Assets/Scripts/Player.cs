@@ -79,13 +79,13 @@ public class Player : MonoBehaviour
                 
             }
 
-            if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
+            if (Input.GetKey(KeyCode.LeftShift) && grappable != null && isGrappled) {
                 rb.velocity = new Vector2(0f, 0f);
                 rb.gravityScale = 0;
 
                 beamRenderer.SetPosition(0, beampoint.position);
                 beamRenderer.SetPosition(1, grappable.gameObject.transform.position);  
-
+                  
                 transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
 
             }
