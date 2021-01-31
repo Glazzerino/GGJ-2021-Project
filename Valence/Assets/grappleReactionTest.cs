@@ -14,8 +14,8 @@ public class grappleReactionTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if (grappableEntity.GetGrappled()) {
-            Debug.Log(grappableEntity.GetGrappled());
+     if (grappableEntity.isGrappled()) {
+            Debug.Log(grappableEntity.isGrappled());
         }   
     }
 }
