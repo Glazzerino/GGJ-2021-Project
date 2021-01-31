@@ -30,7 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
 
         //ANIMATION CONTROL
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        if (controller.isGrounded()) {
+            animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        }
 
 
         horizontalInput = Input.GetAxisRaw("Horizontal") *speed;
