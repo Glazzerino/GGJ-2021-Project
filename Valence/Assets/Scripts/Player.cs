@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public Animator animator;
 
-    const int RADIUS = 3;
+    public int RADIUS = 3;
 
     public float speed = 30f;
     public LineRenderer beamRenderer;
@@ -61,10 +61,23 @@ public class Player : MonoBehaviour
                 //Debug.Log("Jumped!");
             }
             // BEHAVIOR
-            grappable = GetClosestGrappable();
 
+            // keydown event. keeps reads and writes low
 
-
+            if (Input.GetKeyDown(KeyCode.LeftShift)) {
+                
+                grappable = GetClosestGrappable();
+                if (grappable != null) {
+                    
+                    if (Vector2.Distance(transform.position, grappable.transform.position) < RADIUS) {
+                           beamRenderer.enabled = true;
+                           grappable.SetGrappled(true);
+                
+                           isGrappled = true; 
+                    }
+                }
+                
+            }
 
             if (Input.GetKey(KeyCode.LeftShift) && grappable != null) {
                 rb.velocity = new Vector2(0f, 0f);
@@ -76,25 +89,16 @@ public class Player : MonoBehaviour
                 transform.RotateAround(grappable.gameObject.transform.position, Vector3.forward, horizontalInput * Time.fixedDeltaTime * rotSpeedFactor);
 
             }
-            // keydown event. keeps reads and writes low
-            
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                //this.gameObject.transform.Rotate(0,0,0);
-                this.gameObject.transform.rotation = Quaternion.identity;
-            }
+           
 
-            if (grappable != null && Input.GetKeyDown(KeyCode.LeftShift)) {
-                beamRenderer.enabled = true;
-                grappable.SetGrappled(true);
-                
-                isGrappled = true;
-            }
+            
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 beamRenderer.enabled = false;
                 rb.gravityScale = 2.5f;
                 isGrappled = false;
+                this.gameObject.transform.rotation = Quaternion.identity;
+
                 grappable.SetGrappled(false);
             }
     }
