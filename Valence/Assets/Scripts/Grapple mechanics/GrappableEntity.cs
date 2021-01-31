@@ -12,10 +12,10 @@ public class GrappableEntity : MonoBehaviour
     }
 
     public void SetGrappled(bool set) {
-        isGrappled = set;
+        grappled = set;
     }
-    public bool GetGrappled() {
-        return isGrappled;
+    public bool isGrappled() {
+        return grappled;
     }
     private void OnDestroy() {
         Entities.Remove(this);
