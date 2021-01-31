@@ -22,7 +22,6 @@ public class EnemyAI : MonoBehaviour
     bool reachedEndOfPath = false;
 
     public PlayerDetection enemyArea;
-    public DeathDetection deathDetection;
     GrappableEntity grappableEntity;
 
     public Sprite grappledSprite;
@@ -46,7 +45,7 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {       
-        if (!enemyArea.playerInside || deathDetection.isDead == true)
+        if (!enemyArea.playerInside)
         {
             if (seeker.IsDone())
                 seeker.StartPath(rb.position, defaultPosition, OnPathComplete);
@@ -82,7 +81,7 @@ public class EnemyAI : MonoBehaviour
         } else
         {
 
-            if (!enemyArea.playerInside || deathDetection.isDead == true)
+            if (!enemyArea.playerInside)
             {
                 spriteRenderer.sprite = scoutingSprite;
             } else
