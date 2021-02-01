@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/FourthLevel.unity
-=======
-- path: Assets/Scenes/winScreen.unity
->>>>>>> 850200bce15d22eec172b7967d570344f69e85f9
+- path: Assets/Scenes/mainMenu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
