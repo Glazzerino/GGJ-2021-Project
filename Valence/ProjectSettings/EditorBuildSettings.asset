@@ -12,17 +12,26 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstLevel.unity
     guid: b700be843aebcd1458930bc2334fa076
   - enabled: 1
-    path: Assets/Second Level.unity
+    path: Assets/Scenes/Second Level.unity
     guid: d971bfeda6ab8b046bfef460ed72a675
   - enabled: 0
-    path: Assets/Scenes/Second Level.unity
-    guid: d158b705d6b45ef45943b0c0bd47cf55
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: cb30272c97ad9a148ba6699b250cd714
+  - enabled: 0
+    path: Assets/Scenes/FifthLevel.unity
+    guid: e7f047199091d57479cba938a5d3cbfa
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: c341851c8f5f30546a882a5c8a1eee45
   - enabled: 1
     path: Assets/Scenes/FourthLevel.unity
-    guid: e7f047199091d57479cba938a5d3cbfa
+    guid: 7ff7adc11d26271419dd8edf5ba04d27
+  - enabled: 1
+    path: Assets/Scenes/winScreen.unity
+    guid: 7c323b70747ce3241b175edd7f92c5fc
   - enabled: 0
     path: Assets/Scenes/Pathfinding testing.unity
     guid: 996453f104eb6be45a4fa5cd3e545e6c
