@@ -42,7 +42,6 @@ public class EnemyAI : MonoBehaviour
         defaultPosition = transform.position;
 
     }
-
     void UpdatePath()
     {       
         if (!enemyArea.playerInside)
@@ -71,13 +70,13 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        
         if (grappableEntity.grappled)
         {
             
             spriteRenderer.sprite = grappledSprite;
             rb.velocity = Vector3.zero;
-            rb.angularVelocity = 0;
+            //rb.angularVelocity = 0;
         } else
         {
 
