@@ -5392,7 +5392,7 @@ MonoBehaviour:
   beamRenderer: {fileID: 853948422}
   controller: {fileID: 734062611}
   beampoint: {fileID: 1053395327}
-  rotSpeedFactor: 2
+  rotSpeedFactor: 5
   isGrappled: 0
   deathDetection: {fileID: 734062618}
 --- !u!1 &750209686
@@ -6627,12 +6627,12 @@ PrefabInstance:
     - target: {fileID: 6284211084931071456, guid: 42b8a28872f326f4bb5c76c46c3e8291,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.656321
+      value: 5.755
       objectReference: {fileID: 0}
     - target: {fileID: 6284211084931071456, guid: 42b8a28872f326f4bb5c76c46c3e8291,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3394099
+      value: -0.287
       objectReference: {fileID: 0}
     - target: {fileID: 6284211084931071456, guid: 42b8a28872f326f4bb5c76c46c3e8291,
         type: 3}
